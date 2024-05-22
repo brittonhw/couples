@@ -1,3 +1,3 @@
-Activate environmen:
+Activate environment:
 
 . .venv/bin/activate
