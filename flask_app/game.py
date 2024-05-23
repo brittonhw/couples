@@ -10,6 +10,15 @@ bp = Blueprint('game', __name__)
 
 
 
+current_game =[ 'MAN', 'CAT', 'PLAY', 'SILLY', 'EDUCATE', 'MINUTE', 'GLOVE', 'CONTROL', 'SHORE', 'RABBIT']
+
+current_solves = []
+
+answer_key = [{'SILLY', 'RABBIT'}, {'CAT', 'GLOVE'}, {'EDUCATE', 'SHORE'}, {'MAN', 'CONTROL'}, {'PLAY', 'MINUTE'}]
+
+
+
+
 @bp.route('/')
 def index():
     db = get_db()
@@ -23,8 +32,18 @@ def index():
 
 @bp.route('/submit', methods=['POST'])
 def submit_form():
+    global current_game
+    global current_solves
+
     selected_options = request.form.getlist('options')  # Get the list of selected options
-    return f'Selected options: {selected_options}'
+
+    if set(selected_options) in answer_key:
+        current_solves.append(selected_options)
+        current_game = [word for word in current_game if word not in selected_options]
+
+    print(current_game)
+    
+    return render_template('game/create.html', current_game = current_game, current_solves = current_solves)
 
 @bp.route('/create', methods=('GET', 'POST'))
 @login_required
@@ -49,7 +68,7 @@ def create():
             db.commit()
             return redirect(url_for('game.index'))
 
-    return render_template('game/create.html')
+    return render_template('game/create.html', current_game = current_game, current_solves = current_solves)
 
 def get_post(id, check_author=True):
     post = get_db().execute(

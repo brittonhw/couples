@@ -65,3 +65,21 @@ input[type=submit] { align-self: start; min-width: 10em; }
     background-color: #4CAF50; /* Change to your preferred color */
     border-color: #4CAF50;
 }
+.name-pairs-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+}
+
+.name-square {
+    width: 100px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid #333;
+    background-color: #f9f9f9;
+    font-weight: bold;
+    font-size: 16px;
+    text-align: center;
+}

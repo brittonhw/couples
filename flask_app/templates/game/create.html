@@ -8,19 +8,27 @@
   
 
   <form action="{{ url_for('game.submit_form') }}" method="post">
-    <h3>Select Options:</h3>
+    <h3>Answers</h3>
+
+    <div class="name-pairs-grid">
+      {% for pair in current_solves %}
+          <div class="name-square" data-name="{{ pair[0] }}">{{ pair[0] }}</div>
+          <div class="name-square" data-name="{{ pair[1] }}">{{ pair[1] }}</div>
+      {% endfor %}
+  </div>
+
+  
+    
+    
+    <h3>Select Two Items:</h3>
     <div class="checkbox-grid">
     
-    <label><input type="checkbox" name="options" value="option1"><span class="checkbox-custom" data-text="MAN"></span> </label><br>
-    <label><input type="checkbox" name="options" value="option2"><span class="checkbox-custom" data-text="CAT"></span> </label><br>
-    <label><input type="checkbox" name="options" value="option3"><span class="checkbox-custom" data-text="PLAY"></span> </label><br>
-    <label><input type="checkbox" name="options" value="option4"><span class="checkbox-custom" data-text="SILLY"></span> </label><br>
-    <label><input type="checkbox" name="options" value="option5"><span class="checkbox-custom" data-text="EDUCATE"></span> </label><br>
-    <label><input type="checkbox" name="options" value="option6"><span class="checkbox-custom" data-text="MINUTE"></span> </label><br>
-    <label><input type="checkbox" name="options" value="option7"><span class="checkbox-custom" data-text="GLOVE"></span> </label><br> 
-    <label><input type="checkbox" name="options" value="option8"><span class="checkbox-custom" data-text="CONTROL"></span> </label><br>
-    <label><input type="checkbox" name="options" value="option9"><span class="checkbox-custom" data-text="SHORE"></span> </label><br>
-    <label><input type="checkbox" name="options" value="option10"><span class="checkbox-custom" data-text="RABBIT"></span> </label><br>
+
+    {% for item in current_game %}
+    
+    <label><input type="checkbox" name="options" value="{{ item }}"><span class="checkbox-custom" data-text= "{{ item }}"></span> </label><br>
+    
+    {% endfor %}
 
 
   </div>
