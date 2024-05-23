@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}New Post{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+  
+
+  <form action="{{ url_for('game.submit_form') }}" method="post">
+    <h3>Select Options:</h3>
+    <div class="checkbox-grid">
+    
+    <label><input type="checkbox" name="options" value="option1"><span class="checkbox-custom" data-text="MAN"></span> </label><br>
+    <label><input type="checkbox" name="options" value="option2"><span class="checkbox-custom" data-text="CAT"></span> </label><br>
+    <label><input type="checkbox" name="options" value="option3"><span class="checkbox-custom" data-text="PLAY"></span> </label><br>
+    <label><input type="checkbox" name="options" value="option4"><span class="checkbox-custom" data-text="SILLY"></span> </label><br>
+    <label><input type="checkbox" name="options" value="option5"><span class="checkbox-custom" data-text="EDUCATE"></span> </label><br>
+    <label><input type="checkbox" name="options" value="option6"><span class="checkbox-custom" data-text="MINUTE"></span> </label><br>
+    <label><input type="checkbox" name="options" value="option7"><span class="checkbox-custom" data-text="GLOVE"></span> </label><br> 
+    <label><input type="checkbox" name="options" value="option8"><span class="checkbox-custom" data-text="CONTROL"></span> </label><br>
+    <label><input type="checkbox" name="options" value="option9"><span class="checkbox-custom" data-text="SHORE"></span> </label><br>
+    <label><input type="checkbox" name="options" value="option10"><span class="checkbox-custom" data-text="RABBIT"></span> </label><br>
+
+
+  </div>
+    <button type="submit">Submit</button>
+    <script>
+
+document.addEventListener('DOMContentLoaded', function() {
+    const checkboxes = document.querySelectorAll('.checkbox-grid input[type="checkbox"]');
+
+    checkboxes.forEach(checkbox => {
+        checkbox.addEventListener('change', function() {
+            const checkedCheckboxes = document.querySelectorAll('.checkbox-grid input[type="checkbox"]:checked');
+            if (checkedCheckboxes.length > 2) {
+                this.checked = false;
+                //alert('You can only select up to 2 options.');
+            }
+        });
+    });
+});
+
+
+    </script>
+</form>
+{% endblock %}
